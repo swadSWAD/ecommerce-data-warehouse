@@ -1,0 +1,26 @@
+﻿# 依赖 / 打包产物
+*.jar
+*.tar.gz
+*.tgz
+*.zip
+node_modules/
+
+# 日志与临时文件
+*.log
+logs/
+tmp/
+*.tmp
+
+# 数据文件（体积大且含业务数据）
+*.csv
+*.txt
+!requirements.txt
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# 系统
+.DS_Store
+Thumbs.db

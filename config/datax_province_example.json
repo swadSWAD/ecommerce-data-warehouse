@@ -1,0 +1,46 @@
+{
+    "job": {
+        "content": [{
+            "reader": {
+                "name": "mysqlreader",
+                "parameter": {
+                    "username": "root",
+                    "password": "123456",
+                    "column": ["id", "name", "region_id", "area_code", "iso_code", "iso_3166_2"],
+                    "connection": [{
+                        "table": ["base_province"],
+                        "jdbcUrl": ["jdbc:mysql://hadoop102:3306/gmall"]
+                    }]
+                }
+            },
+            "writer": {
+                "name": "hdfswriter",
+                "parameter": {
+                    "defaultFS": "hdfs://hadoop102:8020",
+                    "fileType": "text",
+                    "path": "/warehouse/gmall/ods/ods_base_province_full/dt=2026-06-23",
+                    "fileName": "province",
+                    "column": [
+                        {"name": "id", "type": "string"},
+                        {"name": "name", "type": "string"},
+                        {"name": "region_id", "type": "string"},
+                        {"name": "area_code", "type": "string"},
+                        {"name": "iso_code", "type": "string"},
+                        {"name": "iso_3166_2", "type": "string"}
+                    ],
+                    "writeMode": "append",
+                    "fieldDelimiter": "\t",
+                    "compress": "gzip",
+                    "hadoopConfig": {
+                        "dfs.client.use.datanode.hostname": "true"
+                    }
+                }
+            }
+        }],
+        "setting": {
+            "speed": {
+                "channel": 1
+            }
+        }
+    }
+}
